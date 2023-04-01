@@ -1,15 +1,15 @@
 <?php
 /*
 Plugin Name: Sturdy Barnacle Last Edit
-Description: A simple plugin to display the last date and time a post was updated with an option to disable the display.
+Description: A simple plugin to display the last date and time a post or page was updated with an option to disable the display.
 Version: 1.0
-Author: Your Name
-Author URI: https://yourwebsite.com
+Author: sturdybarnacle
+Author URI: https://sturdybarnacle.com
 */
 
-// Add custom field to post editing screen
+// Add custom field to post and page editing screens
 function sb_add_custom_meta_box() {
-    add_meta_box('sb_meta_box', 'Sturdy Barnacle Last Edit', 'sb_meta_box_callback', 'post');
+    add_meta_box('sb_meta_box', 'Sturdy Barnacle Last Edit', 'sb_meta_box_callback', ['post', 'page']);
 }
 add_action('add_meta_boxes', 'sb_add_custom_meta_box');
 
@@ -39,7 +39,7 @@ function sb_save_meta_box_data($post_id) {
 add_action('save_post', 'sb_save_meta_box_data');
 
 function sb_display_last_updated_info($content) {
-    if (!is_single()) {
+    if (!is_singular(['post', 'page'])) {
         return $content;
     }
     $sb_disable_update_info = get_post_meta(get_the_ID(), 'sb_disable_update_info', true);

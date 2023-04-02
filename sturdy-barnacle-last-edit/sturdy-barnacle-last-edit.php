@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Sturdy Barnacle Last Edit
-Description: A simple plugin to display the last date and time a post or page was updated.
+Description: A simple plugin that displays the last date and time a post or page was updated.
 Version: 1.0
 Author: sturdybarnacle
 Author URI: https://sturdybarnacle.com

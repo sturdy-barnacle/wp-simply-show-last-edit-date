@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Sturdy Barnacle Last Edit
-Description: A simple plugin to display the last date and time a post or page was updated with options to disable and position the display.
+Description: A simple plugin to display the last date and time a post or page was updated.
 Version: 1.0
-Author: Your Name
-Author URI: https://yourwebsite.com
+Author: sturdybarnacle
+Author URI: https://sturdybarnacle.com
 */
 
 // Add custom field to post and page editing screens
@@ -21,7 +21,7 @@ function sb_meta_box_callback($post) {
     echo '<label for="sb_disable_update_info">Disable Last Edit Info:</label>';
     echo '<input type="checkbox" id="sb_disable_update_info" name="sb_disable_update_info" ' . checked($sb_disable_update_info, 'on', false) . '/><br>';
 
-    echo '<label for="sb_position_update_info">Position of Last Edit Info:</label>';
+    echo '<label for="sb_position_update_info">Choose where to display the last edited date:</label>';
     echo '<select id="sb_position_update_info" name="sb_position_update_info">';
     echo '<option value="before"' . selected($sb_position_update_info, 'before', false) . '>Before Content</option>';
     echo '<option value="after"' . selected($sb_position_update_info, 'after', false) . '>After Content</option>';
@@ -110,11 +110,11 @@ function sb_display_last_updated_info($content) {
     wp_nonce_field('sb_global_disable');
     echo '<table class="form-table">';
     echo '<tr valign="top">';
-    echo '<th scope="row">Disable Last Edit Info for Posts</th>';
+    echo '<th scope="row">Disable for all Posts</th>';
     echo '<td><input type="checkbox" name="sb_global_disable_posts" ' . checked($sb_global_disable_posts, 'on', false) . ' /></td>';
     echo '</tr>';
     echo '<tr valign="top">';
-    echo '<th scope="row">Disable Last Edit Info for Pages</th>';
+    echo '<th scope="row">Disable for all Pages</th>';
     echo '<td><input type="checkbox" name="sb_global_disable_pages" ' . checked($sb_global_disable_pages, 'on', false) . ' /></td>';
     echo '</tr>';
     echo '</table>';

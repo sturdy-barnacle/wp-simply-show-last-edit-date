@@ -56,7 +56,16 @@ function sb_display_last_updated_info($content)
     if ($sb_disable_update_info == 'on') {
         return $content;
     }
-    $last_updated = esc_html__('Last updated on:', 'sturdy-barnacle-last-edit') . ' ' . esc_html(get_the_modified_date('F j, Y')) . ' ' . esc_html__('at', 'sturdy-barnacle-last-edit') . ' ' . esc_html(get_the_modified_time('g:i a'));
+
+    $timezone_string = get_option('timezone_string');
+    if ($timezone_string) {
+        $timezone = new DateTimeZone($timezone_string);
+        $last_updated_date = new DateTime(get_the_modified_date('Y-m-d H:i:s'), $timezone);
+        $last_updated = esc_html__('Last updated on:', 'sturdy-barnacle-last-edit') . ' ' . esc_html($last_updated_date->format('F j, Y')) . ' ' . esc_html__('at', 'sturdy-barnacle-last-edit') . ' ' . esc_html($last_updated_date->format('g:i a'));
+    } else {
+        $last_updated = esc_html__('Last updated on:', 'sturdy-barnacle-last-edit') . ' ' . esc_html(get_the_modified_date('F j, Y')) . ' ' . esc_html__('at', 'sturdy-barnacle-last-edit') . ' ' . esc_html(get_the_modified_time('g:i a'));
+    }
+
     $sb_last_updated_html = '<p class="sb-last-updated">' . $last_updated . '</p>';
 
     $sb_position_update_info = get_option('sb_position_update_info', 'before');
@@ -103,6 +112,7 @@ function sb_options_page()
 
     echo '<div class="wrap">';
     echo '<h1>Sturdy Barnacle Last Edit</h1>';
+    echo '<p>Use the options below to globally disable the last edit info for all posts and/or pages.</p>';
     echo '<form method="post" action="">';
     wp_nonce_field('sb_global_disable');
     echo '<table class="form-table">';
@@ -120,7 +130,7 @@ function sb_options_page()
     // Add the new text
     echo '<p>';
     printf(
-        __('Thank you for using Simply Show Last Edit Date! If you like this plugin, please consider <a href="%s" target="_blank">leaving a review</a> or <a href="%s" target="_blank">contributing to its development</a>.', 'sturdy-barnacle-last-edit'),
+        __('Thank you for using <strong>Simply Show Last Edit Date</strong>! If you like this plugin, please consider <a href="%s" target="_blank">leaving a review</a> or <a href="%s" target="_blank">contributing to its development</a>.', 'sturdy-barnacle-last-edit'),
         'https://sturdybarnacle.com',
         'https://github.com/sturdy-barnacle/'
     );

@@ -1,6 +1,7 @@
 <?php
 /*
 Plugin Name: Simply Show Last Edit Date
+Plugin URI: https://sturdybarnacle.com
 Description: Simply display the last date and time a post or page was updated.
 Version: 1.0.0
 Author: Kristina Quinones
@@ -79,6 +80,7 @@ function sb_display_last_updated_info($content)
 
 add_filter('the_content', 'sb_display_last_updated_info');
 
+// CSS / Styles
 function sb_add_custom_css()
 {
     wp_enqueue_style('sb-custom-css', plugin_dir_url(__FILE__) . 'sturdy-barnacle-last-edit.css');

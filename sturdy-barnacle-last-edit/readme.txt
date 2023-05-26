@@ -59,23 +59,3 @@ Initial release.
 
 = 1.0.0 =
 Initial release.
-
-== Arbitrary section ==
-
-For more information about this plugin, visit the [SB Show Last Edit Date GitHub repository](https://github.com/sturdy-barnacle/).
-
-== Frequently Asked Questions ==
-
-For frequently asked questions, please visit the [SB Show Last Edit Date plugin page](https://sturdybarnacle.com/plugins/sb-show-last-edit-date/).
-
-== Support ==
-
-For support or to report a bug, please use the [issue tracker on GitHub](https://github.com/sturdy-barnacle/sb-show-last-edit-date/issues).
-
-== Contribute ==
-
-This plugin is open source and contributions are welcome. You can contribute to the development of the plugin on the [SB Show Last Edit Date GitHub repository](https://github.com/sturdy-barnacle/).
-
-== License ==
-
-SB Show Last Edit Date is licensed under the GPL-2.0+ License.

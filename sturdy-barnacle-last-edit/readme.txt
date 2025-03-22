@@ -3,8 +3,8 @@ Contributors: nynomnom
 Donate link: https://ko-fi.com/kristinaq
 Tags: last edit date, last modified, last updated, meta box, options page
 Requires at least: 4.7
-Tested up to: 6.2.2
-Stable tag: 1.0.0
+Tested up to: 6.7
+Stable tag: 1.0.1
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -17,8 +17,10 @@ SB Show Last Edit Date is a WordPress plugin that allows you to display the last
 Features:
 
 - Display the last updated information for posts and pages.
-- Customizable position of last edit info within the content.
+- Customizable position of last edit info within the content (before or after).
 - Option to globally disable last edit info for all posts and/or pages.
+- Individual control per post/page to override global settings.
+- Proper timezone support based on your WordPress settings.
 
 == Installation ==
 
@@ -40,22 +42,30 @@ In the plugin's settings page, you can choose the position of the last edit info
 
 Yes, the plugin provides an options page where you can globally disable the last edit info for all posts and/or pages.
 
+= What if my date and time are not displayed correctly? =
+
+The plugin uses your WordPress timezone settings. Make sure you have the correct timezone set in Settings > General.
+
 == Changelog ==
+
+= 1.0.1 =
+* Added UI option to control position (before/after content)
+* Enhanced input sanitization and validation for improved security
+* Added proper text domain loading for translations
+* Added WordPress version compatibility check
+* Fixed plugin_action_links implementation
+* Improved error handling with try/catch for date operations
+* Added WP_DEBUG support for error logging
+* Improved meta box with global settings information
+* Updated compatibility to WordPress 6.7
 
 = 1.0.0 =
 * Initial release.
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-Initial release.
-
-== Upgrade Notice ==
-
-= 1.0.0 =
-Initial release.
-
-== Upgrade Notice ==
+= 1.0.1 =
+This update adds new configuration options, improves security, and ensures compatibility with WordPress 6.7.
 
 = 1.0.0 =
 Initial release.

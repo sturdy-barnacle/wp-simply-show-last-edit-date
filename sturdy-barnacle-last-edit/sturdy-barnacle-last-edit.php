@@ -3,12 +3,45 @@
 Plugin Name: SB Show Last Edit Date
 Plugin URI: https://sturdybarnacle.com
 Description: Display the last date and time a post or page was updated.
-Version: 1.0.0
+Version: 1.0.1
 Author: Kristina Quinones
 Author URI: https://sturdybarnacle.com
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+Text Domain: sturdy-barnacle-last-edit
+Domain Path: /languages
 */
+
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+// Define plugin constants
+define('SB_LAST_EDIT_VERSION', '1.0.1');
+define('SB_LAST_EDIT_MIN_WP_VERSION', '4.7');
+
+// Check WordPress version
+if (version_compare(get_bloginfo('version'), SB_LAST_EDIT_MIN_WP_VERSION, '<')) {
+    add_action('admin_notices', 'sb_last_edit_wp_version_notice');
+    return;
+}
+
+// Admin notice for WordPress version
+function sb_last_edit_wp_version_notice() {
+    echo '<div class="error"><p>';
+    printf(
+        __('SB Show Last Edit Date requires WordPress version %s or higher. Please upgrade WordPress.', 'sturdy-barnacle-last-edit'),
+        SB_LAST_EDIT_MIN_WP_VERSION
+    );
+    echo '</p></div>';
+}
+
+// Load plugin text domain
+function sb_last_edit_load_textdomain() {
+    load_plugin_textdomain('sturdy-barnacle-last-edit', false, dirname(plugin_basename(__FILE__)) . '/languages');
+}
+add_action('plugins_loaded', 'sb_last_edit_load_textdomain');
 
 // Enqueue CSS
 function sb_add_custom_css()

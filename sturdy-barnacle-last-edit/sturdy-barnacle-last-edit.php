@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: SB Show Last Edit Date
-Plugin URI: https://sturdybarnacle.com
+Plugin URI: https://github.com/sturdy-barnacle/wp-simply-show-last-edit-date
 Description: Display the last date and time a post or page was updated.
 Version: 1.0.1
 Author: Kristina Quinones
-Author URI: https://sturdybarnacle.com
+Author URI: https://kristinaquinones.com
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 Text Domain: sturdy-barnacle-last-edit

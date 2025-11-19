@@ -2,9 +2,10 @@
 Contributors: nynomnom
 Donate link: https://ko-fi.com/kristinaq
 Tags: last edit date, last modified, last updated, meta box, options page
-Requires at least: 4.7
+Requires at least: 5.2
 Tested up to: 6.7
-Stable tag: 1.0.1
+Requires PHP: 7.4
+Stable tag: 1.0.2
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -48,6 +49,20 @@ The plugin uses your WordPress timezone settings. Make sure you have the correct
 
 == Changelog ==
 
+= 1.0.2 =
+* Added PHP version requirement (7.4+) and version check
+* Updated minimum WordPress version to 5.2 for better modern compatibility
+* Added proper plugin file headers (Requires PHP, Requires at least)
+* Added uninstall.php for proper cleanup when plugin is deleted
+* Enhanced CSS enqueuing with version parameter for better cache management
+* Improved code documentation with comprehensive DocBlocks
+* Fixed untranslated strings in options page for better i18n support
+* Improved input handling with wp_unslash() for better security
+* Updated array syntax to use array() for better PHP 5.x compatibility
+* Added ABSPATH checks to all include files for enhanced security
+* Improved escaping in admin URLs with esc_url()
+* Enhanced translator comments for better localization
+
 = 1.0.1 =
 * Added UI option to control position (before/after content)
 * Enhanced input sanitization and validation for improved security
@@ -63,6 +78,9 @@ The plugin uses your WordPress timezone settings. Make sure you have the correct
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+This update adds PHP version checking, improves security and code quality, updates minimum requirements to WordPress 5.2 and PHP 7.4, and adds proper uninstall cleanup.
 
 = 1.0.1 =
 This update adds new configuration options, improves security, and ensures compatibility with WordPress 6.7.

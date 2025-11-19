@@ -1,12 +1,24 @@
 <?php
 /**
+ * Display last updated information
+ *
+ * Handles the display of last edit date and time on posts and pages.
+ *
+ * @package SB_Show_Last_Edit_Date
+ */
+
+// Exit if accessed directly.
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
  * Display last updated information on posts and pages
  * 
- * @param string $content The post content
- * @return string The post content with last updated info
+ * @param string $content The post content.
+ * @return string The post content with last updated info.
  */
-function sb_display_last_updated_info($content)
-{
+function sb_display_last_updated_info($content) {
     // Only show on singular post or page
     if (!is_singular(['post', 'page'])) {
         return $content;

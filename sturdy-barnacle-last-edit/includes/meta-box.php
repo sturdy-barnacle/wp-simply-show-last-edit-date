@@ -1,9 +1,21 @@
 <?php
 /**
+ * Meta box functionality
+ *
+ * Handles the custom meta box on post and page editing screens.
+ *
+ * @package SB_Show_Last_Edit_Date
+ */
+
+// Exit if accessed directly.
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
  * Add custom meta box to post and page editing screens
  */
-function sb_add_custom_meta_box()
-{
+function sb_add_custom_meta_box() {
     add_meta_box(
         'sb_meta_box',
         __('SB Show Last Edit Date', 'sturdy-barnacle-last-edit'),
@@ -18,10 +30,9 @@ add_action('add_meta_boxes', 'sb_add_custom_meta_box');
 /**
  * Render the meta box content
  * 
- * @param WP_Post $post The post object
+ * @param WP_Post $post The post object.
  */
-function sb_meta_box_callback($post)
-{
+function sb_meta_box_callback($post) {
     // Add nonce for security
     wp_nonce_field('sb_meta_box', 'sb_meta_box_nonce');
     
@@ -59,10 +70,9 @@ function sb_meta_box_callback($post)
 /**
  * Save the meta box data
  * 
- * @param int $post_id The post ID
+ * @param int $post_id The post ID.
  */
-function sb_save_meta_box_data($post_id)
-{
+function sb_save_meta_box_data($post_id) {
     // Check if our nonce is set
     if (!isset($_POST['sb_meta_box_nonce'])) {
         return;

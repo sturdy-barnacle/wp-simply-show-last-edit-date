@@ -109,15 +109,21 @@ The plugin provides a clean and intuitive settings page where you can configure 
 - Control the position of the last edit info
 - Globally disable for all posts or pages
 
+<img width="1142" height="707" alt="Screenshot 2025-11-19 at 8 16 26 PM" src="https://github.com/user-attachments/assets/6aff23d2-a0f2-4a5a-82c3-b102c3233c2c" />
+
 ### Meta Box
 Each post and page includes a convenient meta box in the editor sidebar:
 - Quick toggle to disable last edit info for individual content
 - Visual indicator of global settings status
 
+<img width="294" height="172" alt="Screenshot 2025-11-19 at 8 17 45 PM" src="https://github.com/user-attachments/assets/b7aae4c8-aff5-4857-85c1-3089857bc6ab" />
+
 ### Frontend Display
 The last updated information appears cleanly integrated with your content:
 - Respects your theme's styling
 - Includes custom CSS class for easy customization (`sb-last-updated`)
+  
+<img width="758" height="353" alt="Screenshot 2025-11-19 at 8 18 29 PM" src="https://github.com/user-attachments/assets/d6f87eda-5583-42da-bf20-e630cbe1f802" />
 
 ## 🛠️ Development
 

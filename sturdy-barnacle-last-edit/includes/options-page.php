@@ -1,6 +1,21 @@
 <?php
-function sb_options_page()
-{
+/**
+ * Options page functionality
+ *
+ * Handles the plugin settings page in WordPress admin.
+ *
+ * @package SB_Show_Last_Edit_Date
+ */
+
+// Exit if accessed directly.
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
+ * Render the options page
+ */
+function sb_options_page() {
     if (!current_user_can('manage_options')) {
         return;
     }
@@ -18,9 +33,9 @@ function sb_options_page()
         
         // Sanitize and save position option
         $sb_position_update_info = isset($_POST['sb_position_update_info']) ? 
-            sanitize_text_field($_POST['sb_position_update_info']) : 'before';
+            sanitize_text_field(wp_unslash($_POST['sb_position_update_info'])) : 'before';
         // Validate that it's one of the allowed values
-        $sb_position_update_info = in_array($sb_position_update_info, ['before', 'after']) ? 
+        $sb_position_update_info = in_array($sb_position_update_info, array('before', 'after'), true) ? 
             $sb_position_update_info : 'before';
         update_option('sb_position_update_info', $sb_position_update_info);
         
@@ -92,9 +107,19 @@ function sb_options_page()
         <p>
             <?php
             printf(
-                __('Thank you for using <strong>SB Show Last Edit Date</strong>! If you like this plugin, please consider <a href="%s" target="_blank">leaving a review</a> or <a href="%s" target="_blank">contributing to its development</a>.', 'sturdy-barnacle-last-edit'),
-                'https://sturdybarnacle.com',
-                'https://github.com/sturdy-barnacle/'
+                /* translators: 1: Link to review page, 2: Link to GitHub repository */
+                esc_html__('Thank you for using %1$s! If you like this plugin, please consider %2$s or %3$s.', 'sturdy-barnacle-last-edit'),
+                '<strong>' . esc_html__('SB Show Last Edit Date', 'sturdy-barnacle-last-edit') . '</strong>',
+                sprintf(
+                    '<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
+                    'https://wordpress.org/support/plugin/sturdy-barnacle-last-edit/reviews/',
+                    esc_html__('leaving a review', 'sturdy-barnacle-last-edit')
+                ),
+                sprintf(
+                    '<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
+                    'https://github.com/sturdy-barnacle/wp-simply-show-last-edit-date',
+                    esc_html__('contributing to its development', 'sturdy-barnacle-last-edit')
+                )
             );
             ?>
         </p>

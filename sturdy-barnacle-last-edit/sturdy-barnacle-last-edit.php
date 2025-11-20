@@ -15,7 +15,7 @@
  * Requires at least: 5.2
  * Requires PHP: 7.4
  * Author: Kristina Quinones
- * Author URI: https://kristinaquinones.com
+ * Author URI: https://github.com/sturdy-barnacle
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: sturdy-barnacle-last-edit

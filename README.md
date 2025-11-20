@@ -258,7 +258,6 @@ This project is licensed under the GNU General Public License v2.0 or later - se
 
 **Kristina Quinones**
 
-- Website: [kristinaquinones.com](https://kristinaquinones.com)
 - GitHub: [@sturdy-barnacle](https://github.com/sturdy-barnacle)
 - Support: [Ko-fi](https://ko-fi.com/kristinaq)
 
@@ -272,7 +271,6 @@ This project is licensed under the GNU General Public License v2.0 or later - se
 
 **If you find this plugin useful, please consider:**
 - ⭐ [Starring the repository](https://github.com/sturdy-barnacle/wp-simply-show-last-edit-date)
-- 📝 [Leaving a review](https://wordpress.org/support/plugin/sturdy-barnacle-last-edit/reviews/)
-- ☕ [Supporting development](https://ko-fi.com/kristinaq)
+
 
 Made with ❤️ for the WordPress community

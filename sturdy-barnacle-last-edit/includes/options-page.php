@@ -112,8 +112,8 @@ function sb_options_page() {
                 '<strong>' . esc_html__('SB Show Last Edit Date', 'sturdy-barnacle-last-edit') . '</strong>',
                 sprintf(
                     '<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',
-                    'https://wordpress.org/support/plugin/sturdy-barnacle-last-edit/reviews/',
-                    esc_html__('leaving a review', 'sturdy-barnacle-last-edit')
+                    'https://ko-fi.com/kristinaq',
+                    esc_html__('sending me a tip', 'sturdy-barnacle-last-edit')
                 ),
                 sprintf(
                     '<a href="%s" target="_blank" rel="noopener noreferrer">%s</a>',

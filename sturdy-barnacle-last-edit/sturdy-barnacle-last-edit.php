@@ -91,6 +91,40 @@ function sb_add_custom_css() {
 }
 add_action('wp_enqueue_scripts', 'sb_add_custom_css');
 
+/**
+ * Migrate old options to new format
+ */
+function sb_migrate_options() {
+    // Check if migration is needed
+    if (get_option('sb_options_migrated')) {
+        return;
+    }
+
+    // Get old options
+    $old_position = get_option('sb_position_update_info', 'before');
+    $old_disable_posts = get_option('sb_global_disable_posts', 'off');
+    $old_disable_pages = get_option('sb_global_disable_pages', 'off');
+
+    // Prepare new options array
+    $new_options = array(
+        'position_update_info' => $old_position,
+        'global_disable_posts' => ($old_disable_posts === 'on') ? 1 : 0,
+        'global_disable_pages' => ($old_disable_pages === 'on') ? 1 : 0,
+    );
+
+    // Save new options
+    update_option('sb_options', $new_options);
+
+    // Mark as migrated
+    update_option('sb_options_migrated', true);
+
+    // Clean up old options
+    delete_option('sb_position_update_info');
+    delete_option('sb_global_disable_posts');
+    delete_option('sb_global_disable_pages');
+}
+add_action('admin_init', 'sb_migrate_options');
+
 // Include additional files
 require_once plugin_dir_path(__FILE__) . 'includes/admin.php';
 require_once plugin_dir_path(__FILE__) . 'includes/meta-box.php';

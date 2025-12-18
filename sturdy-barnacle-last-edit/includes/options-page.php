@@ -72,10 +72,10 @@ function sb_options_page() {
                     <td>
                         <select name="sb_position_update_info">
                             <option value="before" <?php selected($sb_position_update_info, 'before'); ?>>
-                                <?php echo esc_html__('Before Content', 'sturdy-barnacle-last-edit'); ?>
+                                <?php echo esc_html__('Top of post (default)', 'sturdy-barnacle-last-edit'); ?>
                             </option>
                             <option value="after" <?php selected($sb_position_update_info, 'after'); ?>>
-                                <?php echo esc_html__('After Content', 'sturdy-barnacle-last-edit'); ?>
+                                <?php echo esc_html__('Bottom of post', 'sturdy-barnacle-last-edit'); ?>
                             </option>
                         </select>
                     </td>

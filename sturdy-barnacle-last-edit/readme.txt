@@ -18,7 +18,7 @@ SB Show Last Edit Date is a WordPress plugin that allows you to display the last
 Features:
 
 - Display the last updated information for posts and pages.
-- Customizable position of last edit info within the content (before or after).
+- Customizable position of last edit info within the content (top or bottom of post).
 - Option to globally disable last edit info for all posts and/or pages.
 - Individual control per post/page to override global settings.
 - Proper timezone support based on your WordPress settings.
@@ -37,7 +37,7 @@ On the post or page editing screen, you'll find a meta box labeled 'SB Show Last
 
 = How do I change the position of the last edit info within the content? =
 
-In the plugin's settings page, you can choose the position of the last edit info. It can be displayed either before or after the content.
+In the plugin's settings page, you can choose the position of the last edit info. It can be displayed either at the top or bottom of the post content.
 
 = Can I globally disable the last edit info for all posts and/or pages? =
 

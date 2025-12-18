@@ -20,7 +20,7 @@ function sb_options_page() {
         return;
     }
     
-    // Get all public post types
+    // Get all public post types as objects (we need labels for display)
     $post_types = get_post_types(array('public' => true), 'objects');
     
     // Migrate old settings to new format (one-time migration)

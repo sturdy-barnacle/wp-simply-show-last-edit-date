@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
  * Add custom meta box to all public post type editing screens
  */
 function sb_add_custom_meta_box() {
-    // Get all public post types
+    // Get all public post types as names array (for add_meta_box)
     $post_types = get_post_types(array('public' => true));
     
     add_meta_box(

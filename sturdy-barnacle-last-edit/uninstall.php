@@ -20,7 +20,7 @@ delete_option('sb_position_update_info');
 delete_option('sb_global_disable_posts');
 delete_option('sb_global_disable_pages');
 
-// Delete new format options for all post types
+// Delete new format options for all post types (names array is sufficient)
 $post_types = get_post_types(array('public' => true));
 foreach ($post_types as $post_type) {
     delete_option('sb_global_disable_' . $post_type);

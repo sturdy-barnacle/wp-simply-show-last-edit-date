@@ -23,6 +23,18 @@ function sb_options_page() {
     // Get all public post types
     $post_types = get_post_types(array('public' => true), 'objects');
     
+    // Migrate old settings to new format (one-time migration)
+    // Old format: sb_global_disable_posts, sb_global_disable_pages (plural)
+    // New format: sb_global_disable_post, sb_global_disable_page (singular, from post type name)
+    if (get_option('sb_global_disable_posts') !== false && get_option('sb_global_disable_post') === false) {
+        update_option('sb_global_disable_post', get_option('sb_global_disable_posts'));
+        delete_option('sb_global_disable_posts');
+    }
+    if (get_option('sb_global_disable_pages') !== false && get_option('sb_global_disable_page') === false) {
+        update_option('sb_global_disable_page', get_option('sb_global_disable_pages'));
+        delete_option('sb_global_disable_pages');
+    }
+    
     // Handle form submission
     if (isset($_POST['sb_settings_submit'])) {
         check_admin_referer('sb_settings_nonce');

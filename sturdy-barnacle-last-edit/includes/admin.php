@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Add options page to WordPress admin menu and register settings
+ * Add options page to WordPress admin menu
  */
 function sb_add_options_page() {
     add_options_page(
@@ -23,7 +23,13 @@ function sb_add_options_page() {
         'sturdy-barnacle-last-edit',
         'sb_options_page'
     );
+}
+add_action('admin_menu', 'sb_add_options_page');
 
+/**
+ * Register settings, sections, and fields
+ */
+function sb_register_settings() {
     // Register settings
     register_setting('sb_options_group', 'sb_options', 'sb_sanitize_options');
 
@@ -35,14 +41,40 @@ function sb_add_options_page() {
         'sturdy-barnacle-last-edit'
     );
 
+    // Add display fields
+    add_settings_field(
+        'sb_position_update_info',
+        __('Last Edit Info Position', 'sturdy-barnacle-last-edit'),
+        'sb_render_position_field',
+        'sturdy-barnacle-last-edit',
+        'sb_display_settings'
+    );
+
     add_settings_section(
         'sb_global_settings',
         __('Global Disable Options', 'sturdy-barnacle-last-edit'),
         'sb_render_global_settings_section',
         'sturdy-barnacle-last-edit'
     );
+
+    // Add global disable fields
+    add_settings_field(
+        'sb_global_disable_posts',
+        __('Disable for all Posts', 'sturdy-barnacle-last-edit'),
+        'sb_render_disable_posts_field',
+        'sturdy-barnacle-last-edit',
+        'sb_global_settings'
+    );
+
+    add_settings_field(
+        'sb_global_disable_pages',
+        __('Disable for all Pages', 'sturdy-barnacle-last-edit'),
+        'sb_render_disable_pages_field',
+        'sturdy-barnacle-last-edit',
+        'sb_global_settings'
+    );
 }
-add_action('admin_menu', 'sb_add_options_page');
+add_action('admin_init', 'sb_register_settings');
 
 /**
  * Add settings link to plugin action links

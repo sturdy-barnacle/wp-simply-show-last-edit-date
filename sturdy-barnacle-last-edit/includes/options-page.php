@@ -50,7 +50,6 @@ function sb_options_page() {
  */
 function sb_render_display_settings_section() {
     echo '<p>' . esc_html__('Configure the position where the last edit date will be displayed.', 'sturdy-barnacle-last-edit') . '</p>';
-    sb_render_position_field();
 }
 
 /**
@@ -60,21 +59,14 @@ function sb_render_position_field() {
     $options = get_option('sb_options', array());
     $position = isset($options['position_update_info']) ? $options['position_update_info'] : 'before';
     ?>
-    <table class="form-table">
-        <tr valign="top">
-            <th scope="row"><?php echo esc_html__('Last Edit Info Position', 'sturdy-barnacle-last-edit'); ?></th>
-            <td>
-                <select name="sb_options[position_update_info]">
-                    <option value="before" <?php selected($position, 'before'); ?>>
-                        <?php echo esc_html__('Before Content', 'sturdy-barnacle-last-edit'); ?>
-                    </option>
-                    <option value="after" <?php selected($position, 'after'); ?>>
-                        <?php echo esc_html__('After Content', 'sturdy-barnacle-last-edit'); ?>
-                    </option>
-                </select>
-            </td>
-        </tr>
-    </table>
+    <select name="sb_options[position_update_info]">
+        <option value="before" <?php selected($position, 'before'); ?>>
+            <?php echo esc_html__('Before Content', 'sturdy-barnacle-last-edit'); ?>
+        </option>
+        <option value="after" <?php selected($position, 'after'); ?>>
+            <?php echo esc_html__('After Content', 'sturdy-barnacle-last-edit'); ?>
+        </option>
+    </select>
     <?php
 }
 
@@ -83,30 +75,26 @@ function sb_render_position_field() {
  */
 function sb_render_global_settings_section() {
     echo '<p>' . esc_html__('Configure global settings to disable the last edit date display for specific post types.', 'sturdy-barnacle-last-edit') . '</p>';
-    sb_render_global_disable_fields();
 }
 
 /**
- * Render global disable fields
+ * Render disable posts field
  */
-function sb_render_global_disable_fields() {
+function sb_render_disable_posts_field() {
     $options = get_option('sb_options', array());
     $disable_posts = isset($options['global_disable_posts']) ? $options['global_disable_posts'] : 0;
+    ?>
+    <input type="checkbox" name="sb_options[global_disable_posts]" value="1" <?php checked(1, $disable_posts); ?> />
+    <?php
+}
+
+/**
+ * Render disable pages field
+ */
+function sb_render_disable_pages_field() {
+    $options = get_option('sb_options', array());
     $disable_pages = isset($options['global_disable_pages']) ? $options['global_disable_pages'] : 0;
     ?>
-    <table class="form-table">
-        <tr valign="top">
-            <th scope="row"><?php echo esc_html__('Disable for all Posts', 'sturdy-barnacle-last-edit'); ?></th>
-            <td>
-                <input type="checkbox" name="sb_options[global_disable_posts]" value="1" <?php checked(1, $disable_posts); ?> />
-            </td>
-        </tr>
-        <tr valign="top">
-            <th scope="row"><?php echo esc_html__('Disable for all Pages', 'sturdy-barnacle-last-edit'); ?></th>
-            <td>
-                <input type="checkbox" name="sb_options[global_disable_pages]" value="1" <?php checked(1, $disable_pages); ?> />
-            </td>
-        </tr>
-    </table>
+    <input type="checkbox" name="sb_options[global_disable_pages]" value="1" <?php checked(1, $disable_pages); ?> />
     <?php
 }

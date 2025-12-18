@@ -20,16 +20,19 @@ function sb_options_page() {
         return;
     }
     
+    // Get all public post types
+    $post_types = get_post_types(array('public' => true), 'objects');
+    
     // Handle form submission
     if (isset($_POST['sb_settings_submit'])) {
         check_admin_referer('sb_settings_nonce');
         
-        // Sanitize and save global disable options
-        $sb_global_disable_posts = isset($_POST['sb_global_disable_posts']) ? 'on' : 'off';
-        update_option('sb_global_disable_posts', sanitize_text_field($sb_global_disable_posts));
-
-        $sb_global_disable_pages = isset($_POST['sb_global_disable_pages']) ? 'on' : 'off';
-        update_option('sb_global_disable_pages', sanitize_text_field($sb_global_disable_pages));
+        // Sanitize and save global disable options for all post types
+        foreach ($post_types as $post_type) {
+            $option_name = 'sb_global_disable_' . $post_type->name;
+            $value = isset($_POST[$option_name]) ? 'on' : 'off';
+            update_option($option_name, sanitize_text_field($value));
+        }
         
         // Sanitize and save position option
         $sb_position_update_info = isset($_POST['sb_position_update_info']) ? 
@@ -49,8 +52,6 @@ function sb_options_page() {
     }
 
     // Get current option values
-    $sb_global_disable_posts = get_option('sb_global_disable_posts', 'off');
-    $sb_global_disable_pages = get_option('sb_global_disable_pages', 'off');
     $sb_position_update_info = get_option('sb_position_update_info', 'before');
 
     // Display settings
@@ -84,18 +85,22 @@ function sb_options_page() {
             
             <h2><?php echo esc_html__('Global Disable Options', 'sturdy-barnacle-last-edit'); ?></h2>
             <table class="form-table">
+                <?php foreach ($post_types as $post_type) : 
+                    $option_name = 'sb_global_disable_' . $post_type->name;
+                    $option_value = get_option($option_name, 'off');
+                    $label = sprintf(
+                        /* translators: %s: post type label (plural) */
+                        __('Disable for all %s', 'sturdy-barnacle-last-edit'),
+                        $post_type->labels->name
+                    );
+                ?>
                 <tr valign="top">
-                    <th scope="row"><?php echo esc_html__('Disable for all Posts', 'sturdy-barnacle-last-edit'); ?></th>
+                    <th scope="row"><?php echo esc_html($label); ?></th>
                     <td>
-                        <input type="checkbox" name="sb_global_disable_posts" <?php checked($sb_global_disable_posts, 'on'); ?> />
+                        <input type="checkbox" name="<?php echo esc_attr($option_name); ?>" <?php checked($option_value, 'on'); ?> />
                     </td>
                 </tr>
-                <tr valign="top">
-                    <th scope="row"><?php echo esc_html__('Disable for all Pages', 'sturdy-barnacle-last-edit'); ?></th>
-                    <td>
-                        <input type="checkbox" name="sb_global_disable_pages" <?php checked($sb_global_disable_pages, 'on'); ?> />
-                    </td>
-                </tr>
+                <?php endforeach; ?>
             </table>
             
             <p class="submit">

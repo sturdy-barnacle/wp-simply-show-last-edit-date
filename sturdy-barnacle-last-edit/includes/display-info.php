@@ -19,17 +19,18 @@ if (!defined('ABSPATH')) {
  * @return string The post content with last updated info.
  */
 function sb_display_last_updated_info($content) {
-    // Only show on singular post or page
-    if (!is_singular(['post', 'page'])) {
+    // Get all public post types
+    $post_types = get_post_types(array('public' => true));
+    
+    // Only show on singular post types
+    if (!is_singular($post_types)) {
         return $content;
     }
     
     // Check global disable settings first
     $post_type = get_post_type();
-    if ($post_type === 'post' && get_option('sb_global_disable_posts', 'off') === 'on') {
-        return $content;
-    }
-    if ($post_type === 'page' && get_option('sb_global_disable_pages', 'off') === 'on') {
+    $option_name = 'sb_global_disable_' . $post_type;
+    if (get_option($option_name, 'off') === 'on') {
         return $content;
     }
     

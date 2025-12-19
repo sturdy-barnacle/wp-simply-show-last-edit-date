@@ -22,13 +22,50 @@ function sb_options_page() {
     }
     ?>
     <div class="wrap">
-        <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
-        <form action="options.php" method="post">
-            <?php
-            settings_fields('sb_options_group');
-            do_settings_sections('sturdy-barnacle-last-edit');
-            submit_button();
-            ?>
+        <h1><?php echo esc_html__('SB Show Last Edit Date', 'sturdy-barnacle-last-edit'); ?></h1>
+        
+        <p><?php echo esc_html__('Configure settings for the last edit date display.', 'sturdy-barnacle-last-edit'); ?></p>
+        
+        <form method="post" action="">
+            <?php wp_nonce_field('sb_settings_nonce'); ?>
+            
+            <h2><?php echo esc_html__('Display Options', 'sturdy-barnacle-last-edit'); ?></h2>
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row"><?php echo esc_html__('Last Edit Info Position', 'sturdy-barnacle-last-edit'); ?></th>
+                    <td>
+                        <select name="sb_position_update_info">
+                            <option value="before" <?php selected($sb_position_update_info, 'before'); ?>>
+                                <?php echo esc_html__('Top of post (default)', 'sturdy-barnacle-last-edit'); ?>
+                            </option>
+                            <option value="after" <?php selected($sb_position_update_info, 'after'); ?>>
+                                <?php echo esc_html__('Bottom of post', 'sturdy-barnacle-last-edit'); ?>
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            
+            <h2><?php echo esc_html__('Global Disable Options', 'sturdy-barnacle-last-edit'); ?></h2>
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row"><?php echo esc_html__('Disable for all Posts', 'sturdy-barnacle-last-edit'); ?></th>
+                    <td>
+                        <input type="checkbox" name="sb_global_disable_posts" <?php checked($sb_global_disable_posts, 'on'); ?> />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><?php echo esc_html__('Disable for all Pages', 'sturdy-barnacle-last-edit'); ?></th>
+                    <td>
+                        <input type="checkbox" name="sb_global_disable_pages" <?php checked($sb_global_disable_pages, 'on'); ?> />
+                    </td>
+                </tr>
+            </table>
+            
+            <p class="submit">
+                <input type="submit" name="sb_settings_submit" class="button button-primary" 
+                    value="<?php echo esc_attr__('Save Changes', 'sturdy-barnacle-last-edit'); ?>" />
+            </p>
         </form>
         <p>
             <?php

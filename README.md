@@ -83,8 +83,8 @@ Access the plugin settings at **Settings → SB Show Last Edit Date** in your Wo
 ### Display Options
 
 **Last Edit Info Position**
-- **Before Content**: Display the last edit date before your post/page content
-- **After Content**: Display the last edit date after your post/page content
+- **Top of post (default)**: Display the last edit date at the top of your post/page content
+- **Bottom of post**: Display the last edit date at the bottom of your post/page content
 
 ### Global Disable Options
 

@@ -28,9 +28,12 @@ function sb_display_last_updated_info($content) {
     }
     
     // Check global disable settings first
+    $options = get_option('sb_options', array());
     $post_type = get_post_type();
-    $option_name = 'sb_global_disable_' . $post_type;
-    if (get_option($option_name, 'off') === 'on') {
+    if ($post_type === 'post' && !empty($options['global_disable_posts'])) {
+        return $content;
+    }
+    if ($post_type === 'page' && !empty($options['global_disable_pages'])) {
         return $content;
     }
     
@@ -78,7 +81,7 @@ function sb_display_last_updated_info($content) {
     );
 
     // Get position setting
-    $sb_position_update_info = get_option('sb_position_update_info', 'before');
+    $sb_position_update_info = isset($options['position_update_info']) ? $options['position_update_info'] : 'before';
     
     // Apply position setting
     if ($sb_position_update_info === 'before') {

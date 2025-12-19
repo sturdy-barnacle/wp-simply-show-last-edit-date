@@ -13,9 +13,18 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 // Delete plugin options.
+// Delete position setting
+delete_option('sb_position_update_info');
+
+// Delete old format options (for backward compatibility with pre-1.0.3)
 delete_option('sb_global_disable_posts');
 delete_option('sb_global_disable_pages');
-delete_option('sb_position_update_info');
+
+// Delete new format options for all post types (names array is sufficient)
+$post_types = get_post_types(array('public' => true));
+foreach ($post_types as $post_type) {
+    delete_option('sb_global_disable_' . $post_type);
+}
 
 // Delete post meta for all posts and pages.
 global $wpdb;

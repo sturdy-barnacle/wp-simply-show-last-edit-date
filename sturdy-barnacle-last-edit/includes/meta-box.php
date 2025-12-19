@@ -13,14 +13,17 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Add custom meta box to post and page editing screens
+ * Add custom meta box to all public post type editing screens
  */
 function sb_add_custom_meta_box() {
+    // Get all public post types as names array (for add_meta_box)
+    $post_types = get_post_types(array('public' => true));
+    
     add_meta_box(
         'sb_meta_box',
         __('SB Show Last Edit Date', 'sturdy-barnacle-last-edit'),
         'sb_meta_box_callback',
-        ['post', 'page'],
+        $post_types,
         'side',  // Position on the side
         'default'  // Priority
     );
@@ -41,23 +44,20 @@ function sb_meta_box_callback($post) {
 
     // Get the post type
     $post_type = get_post_type($post);
+    $post_type_object = get_post_type_object($post_type);
     
     // Get global settings to show info
-    $global_setting = 'off';
-    if ($post_type === 'post') {
-        $global_setting = get_option('sb_global_disable_posts', 'off');
-    } elseif ($post_type === 'page') {
-        $global_setting = get_option('sb_global_disable_pages', 'off');
-    }
+    $option_name = 'sb_global_disable_' . $post_type;
+    $global_setting = get_option($option_name, 'off');
     
     // Show global setting message if needed
     if ($global_setting === 'on') {
         echo '<p class="description">';
-        if ($post_type === 'post') {
-            esc_html_e('Note: Last edit info is globally disabled for all posts.', 'sturdy-barnacle-last-edit');
-        } else {
-            esc_html_e('Note: Last edit info is globally disabled for all pages.', 'sturdy-barnacle-last-edit'); 
-        }
+        printf(
+            /* translators: %s: post type label (plural, lowercase) */
+            esc_html__('Note: Last edit info is globally disabled for all %s.', 'sturdy-barnacle-last-edit'),
+            esc_html(strtolower($post_type_object->labels->name))
+        );
         echo '</p>';
     }
 

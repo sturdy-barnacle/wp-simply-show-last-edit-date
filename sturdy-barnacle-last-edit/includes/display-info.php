@@ -19,8 +19,11 @@ if (!defined('ABSPATH')) {
  * @return string The post content with last updated info.
  */
 function sb_display_last_updated_info($content) {
-    // Only show on singular post or page
-    if (!is_singular(['post', 'page'])) {
+    // Get all public post types as names array (for is_singular check)
+    $post_types = get_post_types(array('public' => true));
+    
+    // Only show on singular post types
+    if (!is_singular($post_types)) {
         return $content;
     }
     

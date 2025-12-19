@@ -48,18 +48,22 @@ function sb_options_page() {
             
             <h2><?php echo esc_html__('Global Disable Options', 'sturdy-barnacle-last-edit'); ?></h2>
             <table class="form-table">
+                <?php foreach ($post_types as $post_type) : 
+                    $option_name = 'sb_global_disable_' . $post_type->name;
+                    $option_value = get_option($option_name, 'off');
+                    $label = sprintf(
+                        /* translators: %s: post type label (plural) */
+                        __('Disable for all %s', 'sturdy-barnacle-last-edit'),
+                        $post_type->labels->name
+                    );
+                ?>
                 <tr valign="top">
-                    <th scope="row"><?php echo esc_html__('Disable for all Posts', 'sturdy-barnacle-last-edit'); ?></th>
+                    <th scope="row"><?php echo esc_html($label); ?></th>
                     <td>
-                        <input type="checkbox" name="sb_global_disable_posts" <?php checked($sb_global_disable_posts, 'on'); ?> />
+                        <input type="checkbox" name="<?php echo esc_attr($option_name); ?>" <?php checked($option_value, 'on'); ?> />
                     </td>
                 </tr>
-                <tr valign="top">
-                    <th scope="row"><?php echo esc_html__('Disable for all Pages', 'sturdy-barnacle-last-edit'); ?></th>
-                    <td>
-                        <input type="checkbox" name="sb_global_disable_pages" <?php checked($sb_global_disable_pages, 'on'); ?> />
-                    </td>
-                </tr>
+                <?php endforeach; ?>
             </table>
             
             <p class="submit">
